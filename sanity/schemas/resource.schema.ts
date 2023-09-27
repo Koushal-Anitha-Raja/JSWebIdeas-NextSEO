@@ -1,4 +1,4 @@
-const scchema = {
+const schema = {
   name: "resource",
   title: "Resource",
   type: "document",
@@ -7,7 +7,7 @@ const scchema = {
       name: "title",
       title: "Title",
       type: "string",
-      require,
+      required: true,
       validation: (rule: any) => rule.required(),
     },
     {
@@ -17,8 +17,8 @@ const scchema = {
       options: { source: "title" },
     },
     {
-      name: "download Link",
-      title: "download Link",
+      name: "downloadLink",
+      title: "Download Link",
       type: "url",
       validation: (Rule: any) => Rule.required(),
     },
@@ -48,3 +48,4 @@ const scchema = {
     },
   ],
 };
+export default schema;
