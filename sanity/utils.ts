@@ -16,4 +16,7 @@ export function buildQuery(params: BuildQueryParams) {
   if (category && category !== "all") {
     conditions.push(`category == "${category}"`);
   }
+  //calculate the offset for pagination
+  const offset = (page - 1) * perPage;
+  const limit = perPage;
 }
