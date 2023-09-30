@@ -1,9 +1,17 @@
+import QueryString from "qs";
+
 interface BuildQueryParams {
   type: string;
   query: string;
   category: string;
   page: number;
   perPage?: number;
+}
+
+interface urlQueryParams {
+  params: string;
+  key: string;
+  value: string | null;
 }
 
 export function buildQuery(params: BuildQueryParams) {
@@ -27,4 +35,9 @@ export function buildQuery(params: BuildQueryParams) {
   } else {
     return `${conditions[0]}[${offset}...${limit}]`;
   }
+}
+
+export function formalUrlQuery({ params, key, value }: urlQueryParams) {
+  const currentUrl = QueryString.parse(params);
+  console.log(currentUrl, key, value);
 }

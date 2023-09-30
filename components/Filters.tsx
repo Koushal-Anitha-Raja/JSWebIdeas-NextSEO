@@ -1,11 +1,18 @@
 "use client";
+import { formalUrlQuery } from "@/sanity/utils";
 import React, { useState } from "react";
-
+import { useSearchParams, useRouter } from "next/navigation";
 const Filters = () => {
   const [active, setActive] = useState("");
+  const searchParams = useSearchParams();
   const links = ["All", "Next13", " Frontend", "backend", "Fullstack "];
 
   const handleFilter = (link: string) => {
+    let newurl = formalUrlQuery({
+      params: searchParams.toString(),
+      key: "category",
+      value: null,
+    });
     setActive(link);
   };
   console.log({ active });
