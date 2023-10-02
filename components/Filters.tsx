@@ -8,14 +8,25 @@ const Filters = () => {
   const links = ["All", "Next13", " Frontend", "backend", "Fullstack "];
 
   const handleFilter = (link: string) => {
-    let newurl = formalUrlQuery({
-      params: searchParams.toString(),
-      key: "category",
-      value: null,
-    });
-    setActive(link);
+    let newurl = "";
+    if (active === link) {
+      setActive("");
+      newurl = formalUrlQuery({
+        params: searchParams.toString(),
+        key: "category",
+        value: "",
+      });
+    } else {
+      setActive(link);
+
+      newurl = formalUrlQuery({
+        params: searchParams.toString(),
+        key: "category",
+        value: link.toLowerCase(),
+      });
+    }
   };
-  console.log({ active });
+  //console.log({ active });
   return (
     <ul className="text-white-800 body-text no-scrollbar flex w-full max-w-full gap-2 overflow-auto py-12 sm:max-w-2xl">
       {links.map((link) => (

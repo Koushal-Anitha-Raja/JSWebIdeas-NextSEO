@@ -39,5 +39,13 @@ export function buildQuery(params: BuildQueryParams) {
 
 export function formalUrlQuery({ params, key, value }: urlQueryParams) {
   const currentUrl = QueryString.parse(params);
-  console.log(currentUrl, key, value);
+
+  currentUrl[key] = value;
+  return qs.stringifyUrl(
+    {
+      url: window.location.pathname,
+      query: currentUrl,
+    },
+    { skipNull: true }
+  );
 }
