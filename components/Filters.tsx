@@ -2,10 +2,12 @@
 import { formalUrlQuery } from "@/sanity/utils";
 import React, { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+
 const Filters = () => {
   const [active, setActive] = useState("");
   const searchParams = useSearchParams();
   const links = ["All", "Next13", " Frontend", "backend", "Fullstack "];
+  const router = useRouter();
 
   const handleFilter = (link: string) => {
     let newurl = "";
@@ -14,7 +16,7 @@ const Filters = () => {
       newurl = formalUrlQuery({
         params: searchParams.toString(),
         key: "category",
-        value: "",
+        value: "null",
       });
     } else {
       setActive(link);
@@ -25,6 +27,7 @@ const Filters = () => {
         value: link.toLowerCase(),
       });
     }
+    router.push(newurl, { scroll: false });
   };
   //console.log({ active });
   return (

@@ -1,4 +1,4 @@
-import QueryString from "qs";
+import qs from "query-string";
 
 interface BuildQueryParams {
   type: string;
@@ -6,12 +6,6 @@ interface BuildQueryParams {
   category: string;
   page: number;
   perPage?: number;
-}
-
-interface urlQueryParams {
-  params: string;
-  key: string;
-  value: string | null;
 }
 
 export function buildQuery(params: BuildQueryParams) {
@@ -37,15 +31,16 @@ export function buildQuery(params: BuildQueryParams) {
   }
 }
 
-export function formalUrlQuery({ params, key, value }: urlQueryParams) {
-  const currentUrl = QueryString.parse(params);
-
+interface UrlQueryParams {
+  params: string;
+  key: string;
+  value: string | null;
+}
+export function formalUrlQuery({ params, key, value }: UrlQueryParams) {
+  const currentUrl = qs.parse(params);
   currentUrl[key] = value;
   return qs.stringifyUrl(
-    {
-      url: window.location.pathname,
-      query: currentUrl,
-    },
+    { url: window.location.pathname, query: currentUrl },
     { skipNull: true }
   );
 }
