@@ -6,7 +6,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 const Filters = () => {
   const [active, setActive] = useState("");
   const searchParams = useSearchParams();
-  const links = ["All", "Next13", " Frontend", "backend", "Fullstack "];
+  const links = ["All", "Next13", " Frontend", "Backend", "Fullstack "];
   const router = useRouter();
 
   const handleFilter = (link: string) => {
@@ -16,7 +16,7 @@ const Filters = () => {
       newurl = formalUrlQuery({
         params: searchParams.toString(),
         key: "category",
-        value: "null",
+        value: "/",
       });
     } else {
       setActive(link);

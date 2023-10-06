@@ -1,10 +1,38 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
+
+import { formalUrlQuery } from "@/sanity/utils";
 
 const Searchform = () => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
   const [Search, setSearch] = useState("");
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      let newurl = "";
+      if (Search) {
+        newurl = formalUrlQuery({
+          params: searchParams.toString(),
+          key: "query",
+          value: Search,
+        });
+      } else {
+        newurl = formalUrlQuery({
+          params: searchParams.toString(),
+          keysToRemove: ["query"],
+        });
+      }
+      router.push(newurl, { scroll: false });
+    }, 300);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [Search]);
+
   return (
     <form className="flex-center mx-auto mt-10 w-full sm:-mt-6 sm:px-5">
       <label className="flex-center relative w-full max-w-3xl">

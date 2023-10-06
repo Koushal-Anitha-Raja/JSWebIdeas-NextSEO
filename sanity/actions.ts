@@ -1,5 +1,5 @@
 import { groq } from "next-sanity";
-import { readclient } from "./lib/client";
+import { readClient } from "./lib/client";
 import { buildQuery } from "./utils";
 
 interface GetResourcesParams {
@@ -11,8 +11,10 @@ interface GetResourcesParams {
 export const getResources = async (params: GetResourcesParams) => {
   const { query, category, page } = params;
 
+  // console.log("Hello there, ", category);
+
   try {
-    const resources = await readclient.fetch(groq`${buildQuery({
+    const resources = await readClient.fetch(groq`${buildQuery({
       type: "resource",
       query,
       category,

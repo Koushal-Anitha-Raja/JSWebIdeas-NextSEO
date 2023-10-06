@@ -9,36 +9,49 @@ interface BuildQueryParams {
 }
 
 export function buildQuery(params: BuildQueryParams) {
-  const { type, query, category, page = 1, perPage = 10 } = params;
+  const { type, query, category, page = 1, perPage = 20 } = params;
 
-  const conditions = [`*[_type=="${type}"]`]; //base condition
+  const conditions = [`*[_type=="${type}"`];
 
-  if (query) conditions.push(`title match "*${query}*"`); //based on the condition we are adding some query or category
+  if (query) conditions.push(`title match "*${query}*"`);
 
   if (category && category !== "all") {
     conditions.push(`category == "${category}"`);
   }
-  //calculate the offset for pagination
+
+  // Calculate pagination limits
   const offset = (page - 1) * perPage;
   const limit = perPage;
 
-  if (conditions.length > 1) {
-    return `${conditions[0]} && (${conditions
-      .slice(1)
-      .join(" && ")})] [${offset}...${limit}]`;
-  } else {
-    return `${conditions[0]}[${offset}...${limit}]`;
-  }
+  return conditions.length > 1
+    ? `${conditions[0]} && (${conditions
+        .slice(1)
+        .join(" && ")})][${offset}...${limit}]`
+    : `${conditions[0]}][${offset}...${limit}]`;
 }
 
 interface UrlQueryParams {
   params: string;
-  key: string;
-  value: string | null;
+  key?: string;
+  value?: string | null;
+  keysToRemove?: string[];
 }
-export function formalUrlQuery({ params, key, value }: UrlQueryParams) {
+export function formalUrlQuery({
+  params,
+  key,
+  value,
+  keysToRemove,
+}: UrlQueryParams) {
   const currentUrl = qs.parse(params);
-  currentUrl[key] = value;
+
+  if (keysToRemove) {
+    keysToRemove.forEach((keytoremove) => {
+      delete currentUrl[keytoremove];
+    });
+  } else if (key && value) {
+    currentUrl[key] = value;
+  }
+
   return qs.stringifyUrl(
     { url: window.location.pathname, query: currentUrl },
     { skipNull: true }
