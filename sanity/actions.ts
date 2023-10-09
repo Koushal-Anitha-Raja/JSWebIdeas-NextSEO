@@ -26,10 +26,10 @@ export const getResources = async (params: GetResourcesParams) => {
         "image":poster.asset->url,
         views,
         slug,
-        catogory,
+       category,
     }`);
     return resources;
   } catch (error) {
-    console.log("error");
+    console.log(error);
   }
 };

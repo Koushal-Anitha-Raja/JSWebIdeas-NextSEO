@@ -43,7 +43,7 @@ const schema = {
       type: "string",
       validation: (Rule: any) => Rule.required(),
       options: {
-        list: ["Frontend", "Backend", "FullStack", "Next13", " Other"],
+        list: ["All", "Next13", "Frontend", "Backend", "Fullstack"],
       },
     },
   ],

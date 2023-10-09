@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
-import { formalUrlQuery } from "@/sanity/utils";
+import { formUrlQuery } from "@/sanity/utils";
 
 const Searchform = () => {
   const searchParams = useSearchParams();
@@ -16,13 +16,13 @@ const Searchform = () => {
     const delayDebounceFn = setTimeout(() => {
       let newurl = "";
       if (Search) {
-        newurl = formalUrlQuery({
+        newurl = formUrlQuery({
           params: searchParams.toString(),
           key: "query",
           value: Search,
         });
       } else {
-        newurl = formalUrlQuery({
+        newurl = formUrlQuery({
           params: searchParams.toString(),
           keysToRemove: ["query"],
         });

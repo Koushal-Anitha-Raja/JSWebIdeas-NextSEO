@@ -7,6 +7,7 @@ interface Props {
   title: string;
   image: string;
   downloadNumber: number;
+  downloadLink: number;
 }
 
 const ResourceCard = ({ id, title, image, downloadNumber }: Props) => {

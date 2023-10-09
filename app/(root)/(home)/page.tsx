@@ -14,12 +14,18 @@ interface Props {
 }
 
 const Page = async ({ searchParams }: Props) => {
+  console.log(searchParams);
+  if (searchParams.category === "fullstack")
+    searchParams.category = "Fullstack";
+  if (searchParams.category === "frontend") searchParams.category = "Frontend";
+  if (searchParams.category === "backend") searchParams.category = "Backend";
+  if (searchParams.category === "next13") searchParams.category = "Next13";
   const resources = await getResources({
     query: searchParams?.query || "",
     category: searchParams?.category || "",
     page: "1",
   });
-  //console.log(resources);
+  console.log(resources);
 
   return (
     <main className="flex-center paddings mx-auto w-full max-w-screen-2xl flex-col">
@@ -33,7 +39,10 @@ const Page = async ({ searchParams }: Props) => {
       </section>
       <Filters />
       <section className="flex-center mt-6 w-full flex-col sm:mt-20">
-        <Header />
+        {/* <Header
+        title="Resources"
+        query={searchParams?.query || ''}
+        category={searchParams?.category || ''}/> */}
         <div className="mt-12 flex w-full flex-wrap justify-center gap-16 sm:justify-start">
           {resources?.length > 0 ? (
             resources.map((resource: any) => (
@@ -43,6 +52,7 @@ const Page = async ({ searchParams }: Props) => {
                 id={resource._id}
                 image={resource.image}
                 downloadNumber={resource.views}
+                downloadLink={resource.downloadLink}
               />
             ))
           ) : (

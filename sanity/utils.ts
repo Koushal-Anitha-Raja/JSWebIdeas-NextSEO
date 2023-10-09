@@ -29,14 +29,13 @@ export function buildQuery(params: BuildQueryParams) {
         .join(" && ")})][${offset}...${limit}]`
     : `${conditions[0]}][${offset}...${limit}]`;
 }
-
 interface UrlQueryParams {
   params: string;
   key?: string;
   value?: string | null;
   keysToRemove?: string[];
 }
-export function formalUrlQuery({
+export function formUrlQuery({
   params,
   key,
   value,
