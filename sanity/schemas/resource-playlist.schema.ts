@@ -1,6 +1,6 @@
 const schema = {
-  name: "resourceplaylist",
-  title: "resourceplaylist",
+  name: "resourcesplaylist",
+  title: "Resources Playlist",
   type: "document",
   fields: [
     {
