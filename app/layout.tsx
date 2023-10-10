@@ -2,15 +2,15 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "JS Mastery",
-  description: "JS Mastery Resources",
+  title: "Web Resources",
+  description: "Web Development  Resources",
   other: {
     "theme-color": "#0d1117",
     "color-scheme": "dark only",
-    "twitter:image": "https://i.ibb.co/d6TXxB2/homepage-thumbnail.jpg",
+    "twitter:image": "https://drive.google.com/drive/u/0/my-drive",
     "twitter:card": "summary_large_image",
     "og:url": "jsmastery.pro",
-    "og:image": "https://i.ibb.co/d6TXxB2/homepage-thumbnail.jpg",
+    "og:image": "https://drive.google.com/drive/u/0/my-drive",
     "og:type": "website",
   },
 };
