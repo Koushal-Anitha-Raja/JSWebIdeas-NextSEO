@@ -36,10 +36,10 @@ const ResourceCard = ({
         </CardHeader>
       </Link>
       <CardContent className="flex-between  mt-4 p-0">
-        <div className="flex-center body-medium gap-1.5 text-white">
+        {/* <div className="flex-center body-medium gap-1.5 text-white">
           <Image src="/downloads.svg" width={20} height={20} alt="download" />
           {`${downloadNumber}`}
-        </div>
+        </div> */}
         <Link
           href={downloadLink}
           target="_blank"
