@@ -65,6 +65,7 @@ const Page = async ({ searchParams }: Props) => {
           </div>
         </section>
       )}
+
       {resourcesPlaylist.map((item: any) => (
         <section
           key={item._id}
